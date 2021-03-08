@@ -1,7 +1,19 @@
-import fs from 'fs'
+import { CsvFileReader } from './CsvFileReader'
 
-const matches = fs.readFileSync('src/data/football.csv', {
-	encoding: 'utf-8',
-})
+const reader = new CsvFileReader('src/data/football.csv')
+reader.read()
 
-console.log(matches)
+enum MatchResult {
+	HomeWin = 'H',
+	AwayWin = 'A',
+	Draw = 'D',
+}
+
+let manUnitedWins = 0
+
+for (let match of reader.data) {
+	if (match[1] === 'Man United' && match[5] === 'H') manUnitedWins++
+	if (match[2] === 'Man United' && match[5] === 'A') manUnitedWins++
+}
+
+console.log(`Man United won ${manUnitedWins} games!`)
