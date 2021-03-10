@@ -14,4 +14,6 @@ const summary = new Summary(new WinsAnalysis('Newcastle'), new ConsoleReport())
 
 summary.buildAndReport(matchReader.matches)
 
-Summary.winsAnalysisWithHtmlReport('Man United')
+Summary.winsAnalysisWithHtmlReport('Newcastle').buildAndReport(
+	matchReader.matches
+)
